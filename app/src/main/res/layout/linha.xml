@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="70dp"
+    android:layout_margin="16dp">
+
+    <TextView
+        android:id="@+id/txt_titulo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_toLeftOf="@+id/txt_remover"
+        android:layout_toStartOf="@+id/txt_remover"
+        android:text="Titulo"
+        android:textStyle="bold"/>
+
+    <ImageButton
+        android:id="@+id/txt_remover"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:scaleType="fitCenter"
+        android:background="@android:color/transparent"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:layout_margin="6dp"
+        app:srcCompat="@drawable/ic_delete_black_48dp"/>
+
+    <TextView
+        android:id="@+id/txt_letra"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/txt_titulo"
+        android:layout_marginTop="5dp"
+        android:layout_toLeftOf="@+id/txt_remover"
+        android:layout_toStartOf="@+id/txt_remover"
+        android:text="One two three go!\r\nMy baby don't mess around\r\n\"/>
+
+
+</RelativeLayout>
