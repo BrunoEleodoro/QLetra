@@ -7,3 +7,5 @@ Project to practice MVP on Android, for better and clean code.<br>
 
 <br>
 <img src="https://raw.githubusercontent.com/BrunoEleodoro/QLetra/master/inicial.png">
+<img src="https://raw.githubusercontent.com/BrunoEleodoro/QLetra/master/cadastro.png">
+<img src="https://raw.githubusercontent.com/BrunoEleodoro/QLetra/master/visualizando.png">
