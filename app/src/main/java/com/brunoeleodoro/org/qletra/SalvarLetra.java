@@ -7,9 +7,12 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.brunoeleodoro.org.qletra.mvp.MVP;
 import com.brunoeleodoro.org.qletra.mvp.Presenter;
+
+import java.util.List;
 
 public class SalvarLetra extends AppCompatActivity implements MVP.View{
     EditText txt_banda,txt_musica;
@@ -36,6 +39,7 @@ public class SalvarLetra extends AppCompatActivity implements MVP.View{
 
     @Override
     public void mostrarAviso(String msg) {
+        /*
         AlertDialog.Builder dialog = new AlertDialog.Builder(this);
         dialog.setIcon(R.mipmap.ic_launcher);
         dialog.setTitle("Aviso");
@@ -47,10 +51,29 @@ public class SalvarLetra extends AppCompatActivity implements MVP.View{
             }
         });
         dialog.show();
+        */
+        Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
+        finish();
     }
 
     @Override
-    public void montarLista(MusicasAdapter adapter) {
+    public void montarLista(List<Musica> musicas) {
+
+    }
+
+
+    @Override
+    public void verLetra(String cod, String banda, String nome_musica, String letra) {
+
+    }
+
+    @Override
+    public void buscarLetra(String cod) {
+
+    }
+
+    @Override
+    public void removerLetra(String cod) {
 
     }
 }

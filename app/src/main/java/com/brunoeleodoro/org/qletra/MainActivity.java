@@ -1,11 +1,14 @@
 package com.brunoeleodoro.org.qletra;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.DividerItemDecoration;
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.text.Editable;
@@ -17,6 +20,8 @@ import android.widget.EditText;
 
 import com.brunoeleodoro.org.qletra.mvp.MVP;
 import com.brunoeleodoro.org.qletra.mvp.Presenter;
+
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements MVP.View{
     RecyclerView recyclerView;
@@ -39,7 +44,8 @@ public class MainActivity extends AppCompatActivity implements MVP.View{
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                Intent intent = new Intent(MainActivity.this,SalvarLetra.class);
+                startActivity(intent);
             }
         });
 
@@ -59,6 +65,8 @@ public class MainActivity extends AppCompatActivity implements MVP.View{
 
             }
         });
+
+        presenter.atualizarLista();
     }
 
     @Override
@@ -99,12 +107,38 @@ public class MainActivity extends AppCompatActivity implements MVP.View{
     }
 
     @Override
-    protected void onResume() {
-        super.onResume();
+    public void montarLista(List<Musica> musicas) {
+        MusicasAdapter adapter = new MusicasAdapter(this,musicas,this);
+        //LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
+        GridLayoutManager gridLayoutManager = new GridLayoutManager(this,2);
+        recyclerView.setLayoutManager(gridLayoutManager);
+        recyclerView.setAdapter(adapter);
+        recyclerView.addItemDecoration(new DividerItemDecoration(this,DividerItemDecoration.VERTICAL));
     }
 
     @Override
-    public void montarLista(MusicasAdapter adapter) {
+    protected void onResume() {
+        super.onResume();
+        presenter.atualizarLista();
+    }
 
+    @Override
+    public void verLetra(String cod, String banda, String nome_musica, String letra) {
+        Intent i = new Intent(this,VerLetra.class);
+        i.putExtra("cod",cod);
+        i.putExtra("banda",banda);
+        i.putExtra("nome_musica",nome_musica);
+        i.putExtra("letra",letra);
+        startActivity(i);
+    }
+
+    @Override
+    public void buscarLetra(String cod) {
+        presenter.buscarLetra(cod);
+    }
+
+    @Override
+    public void removerLetra(String cod) {
+        presenter.removerLetra(cod);
     }
 }

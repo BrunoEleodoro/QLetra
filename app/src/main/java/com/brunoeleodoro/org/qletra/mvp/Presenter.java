@@ -21,6 +21,12 @@ public class Presenter implements MVP.Presenter {
     {
         model = new Model(this);
     }
+
+    @Override
+    public void conectarBanco() {
+        model.conectarBanco();
+    }
+
     @Override
     public void getLetras(String banda, String nome_musica) {
         model.getLetras(banda,nome_musica);
@@ -37,6 +43,11 @@ public class Presenter implements MVP.Presenter {
     }
 
     @Override
+    public void atualizarLista() {
+        model.atualizarLista();
+    }
+
+    @Override
     public void pesquisar(String termo) {
         model.pesquisar(termo);
     }
@@ -44,26 +55,28 @@ public class Presenter implements MVP.Presenter {
     @Override
     public void montarLista(Cursor c) {
         List<Musica> musicas = new ArrayList<>();
-
-        int i = 0;
-        while(i < c.getCount())
+        while(c.moveToNext())
         {
             Musica musica = new Musica(
                     c.getString(c.getColumnIndex("cod")),
                     c.getString(c.getColumnIndex("titulo")),
-                    c.getString(c.getColumnIndex("letra")));
+                    c.getString(c.getColumnIndex("nome_musica")),
+                    c.getString(c.getColumnIndex("letra")).substring(0,20)+"...");
 
             musicas.add(musica);
-            i++;
         }
+        montarLista(musicas);
+    }
 
-        MusicasAdapter adapter = new MusicasAdapter(musicas,getContext());
-        montarLista(adapter);
+    @Override
+    public void buscarLetra(String cod) {
+        model.buscarLetra(cod);
     }
 
     @Override
     public void setView(MVP.View view) {
         this.view = view;
+        conectarBanco();
     }
 
     @Override
@@ -77,7 +90,22 @@ public class Presenter implements MVP.Presenter {
     }
 
     @Override
-    public void montarLista(MusicasAdapter adapter) {
-        view.montarLista(adapter);
+    public void montarLista(List<Musica> musicas) {
+        view.montarLista(musicas);
     }
+
+
+    @Override
+    public void verLetra(Cursor c) {
+        while(c.moveToNext())
+        {
+            String cod = c.getString(c.getColumnIndex("cod"));
+            String banda  = c.getString(c.getColumnIndex("titulo"));
+            String nome_musica = c.getString(c.getColumnIndex("nome_musica"));
+            String letra = c.getString(c.getColumnIndex("letra"));
+
+            view.verLetra(cod,banda,nome_musica,letra);
+        }
+    }
+
 }
