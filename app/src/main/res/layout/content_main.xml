@@ -7,11 +7,31 @@
     android:layout_height="match_parent"
     tools:context="com.brunoeleodoro.org.qletra.MainActivity"
     tools:showIn="@layout/activity_main">
+<TableRow
+    android:id="@+id/table"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="16dp">
+    <EditText
+        android:id="@+id/txt_pesquisa"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="Pesquisar..."
+        android:inputType="textPersonName"
+        android:text=""/>
+
+</TableRow>
+
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recyclerView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/table"
+        android:layout_marginTop="10dp"
         tools:listitem="@layout/linha"></android.support.v7.widget.RecyclerView>
 
 </RelativeLayout>

@@ -34,6 +34,7 @@ public class Database {
         db.execSQL("CREATE TABLE IF NOT EXISTS musicas(" +
                 "cod INTEGER not null," +
                 "titulo varchar(500) not null," +
+                "nome_musica varchar(500) not null," +
                 "letra text not null," +
                 "Primary Key(cod));");
     }

@@ -5,12 +5,23 @@ package com.brunoeleodoro.org.qletra;
  */
 
 public class Musica {
+    private String cod;
     private String titulo;
     private String letra;
 
-    public Musica(String titulo, String letra) {
+    public Musica(String cod, String titulo, String letra) {
+        this.cod = cod;
         this.titulo = titulo;
         this.letra = letra;
+    }
+
+    public String getCod() {
+
+        return cod;
+    }
+
+    public void setCod(String cod) {
+        this.cod = cod;
     }
 
     public String getTitulo() {

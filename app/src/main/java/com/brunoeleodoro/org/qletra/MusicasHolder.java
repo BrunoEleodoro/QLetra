@@ -11,16 +11,14 @@ import android.widget.TextView;
 
 public class MusicasHolder extends RecyclerView.ViewHolder {
 
-    private TextView txt_titulo;
-    private TextView txt_letra;
-    private ImageButton txt_remover;
+    TextView txt_titulo;
+    TextView txt_letra;
+    ImageButton txt_remover;
 
     public MusicasHolder(View view) {
         super(view);
         txt_titulo = (TextView) view.findViewById(R.id.txt_titulo);
         txt_letra = (TextView) view.findViewById(R.id.txt_letra);
         txt_remover = (ImageButton) view.findViewById(R.id.txt_remover);
-
-
     }
 }
